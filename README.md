@@ -1,6 +1,7 @@
 # easy-coding
 
-
+[![npm](https://img.shields.io/npm/v/easy-coding.svg)](https://www.npmjs.com/package/easy-coding)
+![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 This package contains utilities written in the TypeScript language. They help you to write your code faster as they are functionalities that commonly take some time from programmers to create.
 
@@ -48,7 +49,7 @@ Decorator function that add the given class to `globalThis`.
 class SomeType { }
 ```
 
-It is helpful when you are wrapping the class inside a function (as when exporting a module to a version supported by browsers) and want to make it available from anywhere.
+It is helpful when you are wrapping the class inside a function (like when exporting a module to a version supported by browsers) and want to make it available from anywhere.
 
 ### Classes
 
