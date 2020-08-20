@@ -15,34 +15,34 @@ This package contains utilities written in the TypeScript language. They help yo
 
 #### `createElement(tag, options)`
 
-Create a new element with custom options and return it.
+Creates a new element with custom options and returns it.
 
 #### `makeGlobal(set)`
 
-Add the properties of the object `set` to `globalThis`.
+Adds the properties of the object `set` to `globalThis`.
 
-#### `getRandomValueFromArray(arr)`
+#### `getRandomValueFrom(arr)`
 
-Return a random index value from `arr`.
+Returns a random index value from `arr`.
 
-#### `randomValueBetween(min, max)`
+#### `randomNumberBetween(min, max)`
 
-Return a random number between `min`and `max`.
+Returns a random number between `min`and `max`.
 
 #### `randomDateBetween(date1, date2)`
 
-Return a random date between two other dates.
+Returns a random date between two other dates.
 
 
 #### `removeSpecialChars(str)`
 
-Return `str` without special chars.
+Returns `str` without special chars.
 
 ### Decorators
 
 #### `Global`
 
-Decorator function that add the given class to `globalThis`.
+Decorator function that adds the given class to `globalThis`.
 
 ```ts
 @Global
@@ -55,9 +55,9 @@ It is helpful when you are wrapping the class inside a function (like when expor
 
 #### `Cookie`
 
-Basic cookie handler for setting and reading cookies.
+Basic handler for reading and setting cookies.
 
 Methods:
 
-- `get(cookieName)`: Return cookie value
-- `set(cookieName, value, exdays)`: Set a cookie
+- `get(cookieName)`: Returns cookie value
+- `set(cookieName, value, exdays)`: Sets a cookie

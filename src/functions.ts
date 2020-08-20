@@ -34,7 +34,7 @@ export const makeGlobal = (set: object): void =>
  * @param arr {T[]} Any type of array
  * @returns {T} Random index value from the given array
  */
-export const getRandomValueFromArray = <T>(arr: T[]) => arr[~~(Math.random() * arr.length)];
+export const getRandomValueFrom = <T>(arr: T[]) => arr[~~(Math.random() * arr.length)];
 
 /* tslint:enable:no-bitwise */
 
@@ -44,7 +44,7 @@ export const getRandomValueFromArray = <T>(arr: T[]) => arr[~~(Math.random() * a
  * @param max {number}
  * @returns {number} Random number between min and max
  */
-export const randomValueBetween = (min: number, max: number) => Math.random() * (max - min) + min;
+export const randomNumberBetween = (min: number, max: number) => Math.random() * (max - min) + min;
 
 /**
  * Returns random date between two other dates
