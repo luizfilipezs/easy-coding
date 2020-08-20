@@ -27,12 +27,16 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options: NewElem
 export const makeGlobal = (set: object): void =>
   Object.entries(set).forEach((entry) => (globalThis[entry[0]] = entry[1]));
 
+/* tslint:disable:no-bitwise */
+
 /**
  * Return an index value from the given array
  * @param arr {T[]} Any type of array
  * @returns {T} Random index value from the given array
  */
 export const getRandomValueFromArray = <T>(arr: T[]) => arr[~~(Math.random() * arr.length)];
+
+/* tslint:enable:no-bitwise */
 
 /**
  * Returns a random number between the two given parameters
@@ -47,15 +51,15 @@ export const randomValueBetween = (min: number, max: number) => Math.random() * 
  * @returns {string} Random date
  */
 export const randomDateBetween = (date1: string | number, date2: string | number) => {
-  var date1 = date1 || '01-01-1970';
-  var date2 = date2 || new Date().toLocaleDateString();
-  
+  date1 = date1 || '01-01-1970';
+  date2 = date2 || new Date().toLocaleDateString();
+
   date1 = new Date(date1).getTime();
   date2 = new Date(date2).getTime();
-  
-  return date1 > date2 ?
-    new Date(randomValueBetween(date2, date1)).toLocaleDateString() :
-    new Date(randomValueBetween(date1, date2)).toLocaleDateString();
+
+  return date1 > date2
+    ? new Date(randomValueBetween(date2, date1)).toLocaleDateString()
+    : new Date(randomValueBetween(date1, date2)).toLocaleDateString();
 };
 
 /**
