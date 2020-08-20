@@ -28,7 +28,7 @@ export const makeGlobal = (set: object): void =>
   Object.entries(set).forEach((entry) => (globalThis[entry[0]] = entry[1]));
 
 /**
- * Returns an index value from the given array
+ * Return an index value from the given array
  * @param arr {T[]} Any type of array
  * @returns {T} Random index value from the given array
  */

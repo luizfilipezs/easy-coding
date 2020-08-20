@@ -8,12 +8,12 @@ export class Cookies {
    * @param cvalue {string} Cookie value
    * @param exdays {string} Cookie duration in days
    */
-  public static set(cname: string, cvalue: string, exdays: number) {
+  public static set(cookieName: string, value: string, exdays: number) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
 
     const expires = 'expires=' + d.toUTCString();
-    document.cookie = `${cname}=${cvalue};${expires};path=/`;
+    document.cookie = `${cookieName}=${value};${expires};path=/`;
   }
   
   /**
@@ -21,8 +21,8 @@ export class Cookies {
    * @param cname {string} Cookie name
    * @returns {string} Value for the given cookie name
    */
-  public static get(cname: string) {
-    const name = cname + '=';
+  public static get(cookieName: string) {
+    const name = cookieName + '=';
     const ca = document.cookie.split(';');
 
     for(let i = 0; i < ca.length; i++) {
