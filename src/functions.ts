@@ -58,8 +58,8 @@ export const randomDateBetween = (date1: string | number, date2: string | number
   date2 = new Date(date2).getTime();
 
   return date1 > date2
-    ? new Date(randomValueBetween(date2, date1)).toLocaleDateString()
-    : new Date(randomValueBetween(date1, date2)).toLocaleDateString();
+    ? new Date(randomNumberBetween(date2, date1)).toLocaleDateString()
+    : new Date(randomNumberBetween(date1, date2)).toLocaleDateString();
 };
 
 /**
