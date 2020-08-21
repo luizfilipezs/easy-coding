@@ -1,6 +1,6 @@
 # easy-coding
 
-![[npm](https://img.shields.io/npm/v/easy-coding.svg)](https://www.npmjs.com/package/easy-coding)
+[![npm](https://img.shields.io/npm/v/easy-coding.svg)](https://www.npmjs.com/package/easy-coding)
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
 This package contains utilities written in the TypeScript language. They help you to write your code faster as they are functionalities that commonly take some time from programmers to create.
