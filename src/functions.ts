@@ -13,8 +13,8 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options: NewElem
   if (id) element.id = id;
   if (classes) element.classList.add(...classes);
   if (content) element.innerHTML = content;
-  if (listeners) listeners.forEach((listener) => element.addEventListener(...listener));
 
+  listeners?.forEach((listener) => element.addEventListener(...listener));
   options.childOf?.appendChild(element);
 
   return element;
