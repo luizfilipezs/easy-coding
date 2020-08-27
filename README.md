@@ -17,9 +17,61 @@ This package contains utilities written in the TypeScript language. They help yo
 
 Creates a new element with custom options and returns it.
 
+Usage:
+
+```js
+const button = createElement('button', {
+  id: 'my-button',
+  classes: ['rounded-button'],
+  content: 'Click me!'
+  listeners: [['click', e => doSomething(e)]],
+  childOf: document.querySelector('#button-wrapper');
+});
+```
+
+#### `handleBindingAttr(attr, callback)`
+
+Gets all DOM elements with the specified attribute and runs a callback function for each one, passing the element and its attribute value as arguments.
+
+Usage:
+
+```html
+<div clickAndGo="/some-route">Click me</div>
+<img clickAndGo="/another-route" src="path/to/img" alt="Some image">
+```
+```js
+handleBindingAttr('clickAndGo', (element, value) =>
+  element.addEventListener('click', () => window.location.href = value)
+);
+```
+
 #### `makeGlobal(set)`
 
 Adds the properties of the object `set` to `globalThis`.
+
+#### `ruleOfThree(a, b, c)`
+
+Returns x where `a` is equivalent to `b` and `c` is equivalent to x.
+
+Example:
+
+```
+a --- b
+c --- x
+```
+
+Let's say you want to turn mililiters to litters:
+
+```
+1000ml --- 1L
+10000ml --- ?
+```
+
+The code:
+
+```js
+const x = ruleOfThree(1000, 1, 10000); // 10
+```
 
 #### `getRandomValueFrom(arr)`
 

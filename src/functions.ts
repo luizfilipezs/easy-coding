@@ -21,11 +21,30 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options: NewElem
 };
 
 /**
+ * Get DOM elements with the specified attribute and run a callback
+ * function for each one, passing the element and its attribute value as
+ * arguments
+ * @param attr {string} Element attribute
+ * @param callback {(element: Element, value: string) => any} Callback function
+ * that runs for each element with the specified attribute. The element and its
+ * attribute value are the arguments for the function
+ */
+export const handleBindingAttr = (attr: string, callback: (element: Element, value: string) => any): void => {
+  const bindings = document.querySelectorAll(`[${attr}]`);
+  bindings.forEach(element => callback(element, element.getAttribute(attr)));
+};
+
+/**
  * Receive an object and add its properties to `globalThis`
  * @param set {object} Object with properties that will be added to `globalThis`
  */
 export const makeGlobal = (set: object): void =>
   Object.entries(set).forEach((entry) => (globalThis[entry[0]] = entry[1]));
+
+/**
+ * Return x where `a` is equivalent to `b` and `c` is equivalent to x
+ */
+export const ruleOfThree = (a: number, b: number, c: number): number => (b * c) / a;
 
 /* tslint:disable:no-bitwise */
 
