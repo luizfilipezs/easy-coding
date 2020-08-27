@@ -31,7 +31,7 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options: NewElem
  */
 export const handleBindingAttr = (attr: string, callback: (element: Element, value: string) => any): void => {
   const bindings = document.querySelectorAll(`[${attr}]`);
-  bindings.forEach(element => callback(element, element.getAttribute(attr)));
+  bindings.forEach((element) => callback(element, element.getAttribute(attr)));
 };
 
 /**
