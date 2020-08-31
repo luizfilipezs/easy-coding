@@ -6,7 +6,7 @@ import { NewElementOptions } from './types';
  * @param options {NewElementOptions} Options for the new element, such as id, classes and event listeners
  * @returns New HTMLElement
  */
-export const createElement = (tag: keyof HTMLElementTagNameMap, options: NewElementOptions): HTMLElement => {
+export const createElement = (tag: keyof HTMLElementTagNameMap, options?: NewElementOptions): HTMLElement => {
   const element = document.createElement(tag);
   const { id, classes, content, listeners } = options;
 
@@ -35,11 +35,18 @@ export const handleBindingAttr = (attr: string, callback: (element: Element, val
 };
 
 /**
- * Receive an object and add its properties to `globalThis`
- * @param set {object} Object with properties that will be added to `globalThis`
+ * Receive an object and add its properties to the `window` object
+ * @param set {object} Object with properties that will be added to the `window` object
  */
-export const makeGlobal = (set: object): void =>
-  Object.entries(set).forEach((entry) => (globalThis[entry[0]] = entry[1]));
+export const addGlobalEntries = (set: object): void =>
+  Object.entries(set).forEach((entry) => (window[entry[0]] = entry[1]));
+
+/**
+ * Add a new property to the `window` object
+ * @param key {string} Property name
+ * @param value {any} Property value
+ */
+export const makeGlobal = (key: string, value: any) => (window[key] = value);
 
 /**
  * Return x where `a` is equivalent to `b` and `c` is equivalent to x

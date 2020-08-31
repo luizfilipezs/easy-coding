@@ -23,7 +23,7 @@ Usage:
 const button = createElement('button', {
   id: 'my-button',
   classes: ['rounded-button'],
-  content: 'Click me!'
+  content: 'Click me!',
   listeners: [['click', e => doSomething(e)]],
   childOf: document.querySelector('#button-wrapper');
 });
@@ -45,9 +45,13 @@ handleBindingAttr('clickAndGo', (element, value) =>
 );
 ```
 
-#### `makeGlobal(set)`
+#### `makeGlobal(key, value)`
 
-Adds the properties of the object `set` to `globalThis`.
+Adds a new property to the `window` object.
+
+#### `addGlobalEntries(set)`
+
+Adds the properties of `set` to the `window` object.
 
 #### `ruleOfThree(a, b, c)`
 
