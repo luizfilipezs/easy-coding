@@ -25,7 +25,7 @@ const button = createElement('button', {
   classes: ['rounded-button'],
   content: 'Click me!',
   listeners: [['click', e => doSomething(e)]],
-  childOf: document.querySelector('#button-wrapper');
+  childOf: document.querySelector('#button-wrapper')
 });
 ```
 
