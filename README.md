@@ -21,8 +21,9 @@ Usage:
 
 ```js
 const button = createElement('button', {
-  id: 'my-button',
-  classes: ['rounded-button'],
+  id: 'my-image',
+  classes: ['cover'],
+  attributes: [['src', '/path/to/img.png']],
   content: 'Click me!',
   listeners: [['click', e => doSomething(e)]],
   childOf: document.querySelector('#button-wrapper')

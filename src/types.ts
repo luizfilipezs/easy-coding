@@ -10,6 +10,19 @@ export interface NewElementOptions {
    */
   classes?: string[];
   /**
+   * Array with arrays that contain an attribute name and
+   * its value
+   * @example
+   * // Sets a source
+   * {
+   *  attributes: [
+   *    ['src', '/path/to/img.png']
+   *  ]
+   *  // ...
+   * }
+   */
+  attributes?: [string, string][];
+  /**
    * Content that will be appended to the element using its `innerHTML` property
    */
   content?: string;

@@ -8,12 +8,13 @@ import { NewElementOptions } from './types';
  */
 export const createElement = (tag: keyof HTMLElementTagNameMap, options?: NewElementOptions): HTMLElement => {
   const element = document.createElement(tag);
-  const { id, classes, content, listeners } = options;
+  const { id, classes, attributes, content, listeners } = options;
 
   if (id) element.id = id;
   if (classes) element.classList.add(...classes);
   if (content) element.innerHTML = content;
 
+  attributes?.forEach((arr) => element.setAttribute(arr[0], arr[1]));
   listeners?.forEach((listener) => element.addEventListener(...listener));
   options.childOf?.appendChild(element);
 
