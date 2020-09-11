@@ -25,14 +25,28 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options?: NewEle
  * Get DOM elements with the specified attribute and run a callback
  * function for each one, passing the element and its attribute value as
  * arguments
- * @param attr {string} Element attribute
+ * @param attribute {string} Element attribute
  * @param callback {(element: Element, value: string) => any} Callback function
  * that runs for each element with the specified attribute. The element and its
  * attribute value are the arguments for the function
  */
-export const handleBindingAttr = (attr: string, callback: (element: Element, value: string) => any): void => {
-  const bindings = document.querySelectorAll(`[${attr}]`);
-  bindings.forEach((element) => callback(element, element.getAttribute(attr)));
+export const handleBindingAttr = (attribute: string, callback: (element: HTMLElement, value: string) => void): void => {
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList')
+        mutation.addedNodes.forEach((node) => {
+          const element = node as HTMLElement;
+          const attr = element.getAttribute(attribute);
+
+          if (attr) callback(element, attr);
+        });
+    });
+  });
+
+  const target = document;
+  const config = { childList: true, subtree: true };
+
+  observer.observe(target, config);
 };
 
 /**

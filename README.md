@@ -34,7 +34,7 @@ const button = createElement('button', {
 
 Gets all DOM elements with the specified attribute and runs a callback function for each one, passing the element and its attribute value as arguments.
 
-Usage:
+Example:
 
 ```html
 <div clickAndGo="/some-route">Click me</div>
@@ -45,6 +45,8 @@ handleBindingAttr('clickAndGo', (element, value) =>
   element.addEventListener('click', () => window.location.href = value)
 );
 ```
+
+Once the function is called it starts listening to template changes, that is, you can add new elements anytime and the proper callback for them and their attributes will run.
 
 #### `makeGlobal(key, value)`
 
