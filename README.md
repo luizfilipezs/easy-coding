@@ -20,7 +20,7 @@ Creates a new element with custom options and returns it.
 Usage:
 
 ```js
-const button = createElement('button', {
+const button = createElement('img', {
   id: 'my-image',
   classes: ['cover'],
   attributes: [['src', '/path/to/img.png']],
