@@ -31,7 +31,16 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options?: NewEle
  * attribute value are the arguments for the function
  */
 export const handleBindingAttr = (attribute: string, callback: (element: HTMLElement, value: string) => void): void => {
-  const observer = new MutationObserver((mutations) => {
+  // Get elements instantly generated
+  const bindingElements = [...document.querySelectorAll(`[${attribute}]`)] as HTMLElement[];
+
+  bindingElements.forEach((element) => {
+    const attr = element.getAttribute(attribute);
+    if (attr) callback(element, attr);
+  });
+
+  // Get elements dinamically generated
+  new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList')
         mutation.addedNodes.forEach((node) => {
@@ -41,12 +50,10 @@ export const handleBindingAttr = (attribute: string, callback: (element: HTMLEle
           if (attr) callback(element, attr);
         });
     });
+  }).observe(document, {
+    childList: true,
+    subtree: true,
   });
-
-  const target = document;
-  const config = { childList: true, subtree: true };
-
-  observer.observe(target, config);
 };
 
 /**
