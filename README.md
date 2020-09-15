@@ -25,7 +25,7 @@ const myImage = createElement('img', {
   classes: ['cover'],
   attributes: [['src', '/path/to/img.png']],
   listeners: [['click', e => doSomething(e)]],
-  childOf: document.querySelector('#button-wrapper')
+  childOf: document.querySelector('.my-images')
 });
 ```
 
