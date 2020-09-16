@@ -20,13 +20,12 @@ Creates a new element with custom options and returns it.
 Usage:
 
 ```js
-const button = createElement('img', {
+const myImage = createElement('img', {
   id: 'my-image',
   classes: ['cover'],
   attributes: [['src', '/path/to/img.png']],
-  content: 'Click me!',
   listeners: [['click', e => doSomething(e)]],
-  childOf: document.querySelector('#button-wrapper')
+  childOf: document.querySelector('.my-images')
 });
 ```
 
