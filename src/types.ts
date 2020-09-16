@@ -14,24 +14,48 @@ export interface NewElementOptions {
    * its value
    * @example
    * // Sets a source
-   * {
-   *  attributes: [
-   *    ['src', '/path/to/img.png']
-   *  ]
-   *  // ...
-   * }
+   * createElement('img', {
+   *   // ...
+   *   attributes: [
+   *     ['src', '/path/to/img.png'],
+   *     ['alt', 'Some alternative text']
+   *   ]
+   * });
    */
   attributes?: [string, string][];
   /**
    * Content that will be appended to the element using its `innerHTML` property
+   * @example
+   * // Adds a listener for the click event
+   * createElement('div', {
+   *   // ...
+   *   content: `
+   *    <p>Hi there! I am the element's content!</p>
+   *    <p>Yeah! I am too!</p>
+   *   `
+   * });
    */
   content?: string;
   /**
-   * It is possible to add listeners to the same event type multiple times
+   * Array with event listeners bound to the element.
+   * It is possible to add listeners to the same event type multiple times.
+   * @example
+   * // Adds a listener for the click event
+   * createElement('button', {
+   *   // ...
+   *   listeners: [
+   *     ['click', (e) => doSomething(e)],
+   *   ]
+   * });
    */
   listeners?: [keyof HTMLElementEventMap, EventListenerOrEventListenerObject][];
   /**
    * Parent to which the new element must be appended to
+   * @example
+   * createElement('button', {
+   *   // ...
+   *   childOf: document.querySelector('#button-wrapper')
+   * });
    */
   childOf?: Element;
 }

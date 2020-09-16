@@ -6,9 +6,16 @@ import { NewElementOptions } from './types';
  * @param options {NewElementOptions} Options for the new element, such as id, classes and event listeners
  * @returns New HTMLElement
  */
-export const createElement = (tag: keyof HTMLElementTagNameMap, options?: NewElementOptions): HTMLElement => {
-  const element = document.createElement(tag);
-  const { id, classes, attributes, content, listeners } = options;
+export const createElement = (tagName: keyof HTMLElementTagNameMap, options?: NewElementOptions): HTMLElement => {
+  const element = document.createElement(tagName);
+  const {
+    id,
+    classes,
+    attributes,
+    content,
+    listeners,
+    childOf
+  } = options;
 
   if (id) element.id = id;
   if (classes) element.classList.add(...classes);
@@ -16,7 +23,7 @@ export const createElement = (tag: keyof HTMLElementTagNameMap, options?: NewEle
 
   attributes?.forEach((arr) => element.setAttribute(arr[0], arr[1]));
   listeners?.forEach((listener) => element.addEventListener(...listener));
-  options.childOf?.appendChild(element);
+  childOf?.appendChild(element);
 
   return element;
 };
