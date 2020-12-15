@@ -6,7 +6,10 @@ import { NewElementOptions } from './types';
  * @param {NewElementOptions} [options] Options for the new element, such as id, classes and event listeners
  * @returns {HTMLElement} New HTMLElement
  */
-export const createElement = (tagName: keyof HTMLElementTagNameMap, { id, classes, attributes, content, listeners, childOf }: NewElementOptions = {}): HTMLElement => {
+export const createElement = (
+  tagName: keyof HTMLElementTagNameMap,
+  { id, classes, attributes, content, listeners, childOf }: NewElementOptions = {},
+): HTMLElement => {
   const element = document.createElement(tagName);
 
   if (id) element.id = id;
@@ -34,10 +37,8 @@ export const handleBindingAttr = (attribute: string, callback: (element: HTMLEle
   const bindingElements = [...document.querySelectorAll(`[${attribute}]`)] as HTMLElement[];
 
   bindingElements.forEach((element) => {
-    if (element instanceof Element) {
-      const attr = element.getAttribute(attribute);
-      if (attr) callback(element, attr);
-    }
+    const attr = element.getAttribute(attribute);
+    if (attr) callback(element, attr);
   });
 
   // Get elements dinamically generated
