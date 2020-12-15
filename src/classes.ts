@@ -4,9 +4,9 @@
 export class Cookies {
   /**
    * Allows to set a cookie
-   * @param cname {string} Cookie name
-   * @param cvalue {string} Cookie value
-   * @param exdays {string} Cookie duration in days
+   * @param {string} cname Cookie name
+   * @param {string} cvalue Cookie value
+   * @param {string} exdays Cookie duration in days
    */
   public static set(cookieName: string, value: string, exdays: number) {
     const d = new Date();
@@ -18,7 +18,7 @@ export class Cookies {
 
   /**
    * Returns cookie value
-   * @param cname {string} Cookie name
+   * @param {string} cname Cookie name
    * @returns {string} Value for the given cookie name
    */
   public static get(cookieName: string) {
@@ -29,6 +29,7 @@ export class Cookies {
       while (c.charAt(0) === ' ') c = c.substring(1);
       if (c.indexOf(name) === 0) return c.substring(name.length, c.length);
     }
+    
     return '';
   }
 }

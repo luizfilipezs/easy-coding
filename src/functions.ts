@@ -2,20 +2,12 @@ import { NewElementOptions } from './types';
 
 /**
  * Create a new element with custom options and return it
- * @param tag {keyof HTMLElementTagNameMap} Element tag
- * @param options {NewElementOptions} Options for the new element, such as id, classes and event listeners
- * @returns New HTMLElement
+ * @param {keyof HTMLElementTagNameMap} tag Element tag
+ * @param {NewElementOptions} [options] Options for the new element, such as id, classes and event listeners
+ * @returns {HTMLElement} New HTMLElement
  */
-export const createElement = (tagName: keyof HTMLElementTagNameMap, options?: NewElementOptions): HTMLElement => {
+export const createElement = (tagName: keyof HTMLElementTagNameMap, { id, classes, attributes, content, listeners, childOf }: NewElementOptions = {}): HTMLElement => {
   const element = document.createElement(tagName);
-  const {
-    id,
-    classes,
-    attributes,
-    content,
-    listeners,
-    childOf
-  } = options;
 
   if (id) element.id = id;
   if (classes) element.classList.add(...classes);
@@ -32,8 +24,8 @@ export const createElement = (tagName: keyof HTMLElementTagNameMap, options?: Ne
  * Get DOM elements with the specified attribute and run a callback
  * function for each one, passing the element and its attribute value as
  * arguments
- * @param attribute {string} Element attribute
- * @param callback {(element: Element, value: string) => any} Callback function
+ * @param {string} attribute Element attribute
+ * @param {(element: Element, value: string) => any} callback Callback function
  * that runs for each element with the specified attribute. The element and its
  * attribute value are the arguments for the function
  */
@@ -42,8 +34,10 @@ export const handleBindingAttr = (attribute: string, callback: (element: HTMLEle
   const bindingElements = [...document.querySelectorAll(`[${attribute}]`)] as HTMLElement[];
 
   bindingElements.forEach((element) => {
-    const attr = element.getAttribute(attribute);
-    if (attr) callback(element, attr);
+    if (element instanceof Element) {
+      const attr = element.getAttribute(attribute);
+      if (attr) callback(element, attr);
+    }
   });
 
   // Get elements dinamically generated
@@ -51,10 +45,11 @@ export const handleBindingAttr = (attribute: string, callback: (element: HTMLEle
     mutations.forEach((mutation) => {
       if (mutation.type === 'childList')
         mutation.addedNodes.forEach((node) => {
-          const element = node as HTMLElement;
-          const attr = element.getAttribute(attribute);
-
-          if (attr) callback(element, attr);
+          if (node instanceof Element) {
+            const element = node as HTMLElement;
+            const attr = element.getAttribute(attribute);
+            if (attr) callback(element, attr);
+          }
         });
     });
   }).observe(document, {
@@ -65,15 +60,15 @@ export const handleBindingAttr = (attribute: string, callback: (element: HTMLEle
 
 /**
  * Receive an object and add its properties to the `window` object
- * @param set {object} Object with properties that will be added to the `window` object
+ * @param {object} set Object with properties that will be added to the `window` object
  */
 export const addGlobalEntries = (set: object): void =>
   Object.entries(set).forEach((entry) => (window[entry[0]] = entry[1]));
 
 /**
  * Add a new property to the `window` object
- * @param key {string} Property name
- * @param value {any} Property value
+ * @param {string} key Property name
+ * @param {any} value Property value
  */
 export const makeGlobal = (key: string, value: any) => (window[key] = value);
 
@@ -86,7 +81,7 @@ export const ruleOfThree = (a: number, b: number, c: number): number => (b * c) 
 
 /**
  * Return an index value from the given array
- * @param arr {T[]} Any type of array
+ * @param {T[]} arr Any type of array
  * @returns {T} Random index value from the given array
  */
 export const getRandomValueFrom = <T>(arr: T[]) => arr[~~(Math.random() * arr.length)];
@@ -95,8 +90,8 @@ export const getRandomValueFrom = <T>(arr: T[]) => arr[~~(Math.random() * arr.le
 
 /**
  * Returns a random number between the two given parameters
- * @param min {number}
- * @param max {number}
+ * @param {number} min
+ * @param {number} max
  * @returns {number} Random number between min and max
  */
 export const randomNumberBetween = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -119,7 +114,7 @@ export const randomDateBetween = (date1: string | number, date2: string | number
 
 /**
  * Returns the given string without special chars
- * @param str {string} Initial string
+ * @param {string} str Initial string
  * @returns {string} The given string without special chars
  */
 export const removeSpecialChars = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
