@@ -23,6 +23,10 @@ Usage:
 const myImage = createElement('img', {
   id: 'my-image',
   classes: ['cover'],
+  style: {
+    width: '340px',
+    height: '160px'
+  },
   attributes: [['src', '/path/to/img.png']],
   listeners: [['click', e => doSomething(e)]],
   childOf: document.querySelector('.my-images')
@@ -117,5 +121,5 @@ Basic handler for reading and setting cookies.
 
 Methods:
 
-- `get(cookieName)`: Returns cookie value
-- `set(cookieName, value, exdays)`: Sets a cookie
+- `get(name)`: Returns cookie value
+- `set(name, value, exdays)`: Sets a cookie

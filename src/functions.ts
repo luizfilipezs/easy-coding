@@ -10,15 +10,20 @@ import { NewElementOptions } from './types';
  */
 export const createElement = (
   tagName: keyof HTMLElementTagNameMap,
-  { id, classes, attributes, content, listeners, childOf }: NewElementOptions = {},
+  { id, classes, style, attributes, content, listeners, childOf }: NewElementOptions = {},
 ): HTMLElement => {
   const element = document.createElement(tagName);
 
   if (id) element.id = id;
   if (classes) element.classList.add(...classes);
   if (content) element.innerHTML = content;
+  if (style) {
+    for (const [key, value] of Object.entries(style)) {
+      if (key in element.style) element.style[key] = value;
+    }
+  }
 
-  attributes?.forEach((arr) => element.setAttribute(arr[0], arr[1]));
+  attributes?.forEach(([key, value]) => element.setAttribute(key, value));
   listeners?.forEach((listener) => element.addEventListener(...listener));
   childOf?.appendChild(element);
 
