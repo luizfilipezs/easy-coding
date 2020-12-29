@@ -1,17 +1,20 @@
+/**
+ * Type representing a class.
+ */
 export type Type<T = any> = new (...args: any[]) => T;
 
 export interface NewElementOptions {
   /**
-   * ID of the element
+   * Element's ID.
    */
   id?: string;
   /**
-   * Array with CSS classes
+   * Array of CSS classes.
    */
   classes?: string[];
   /**
-   * Array with arrays that contain an attribute name and
-   * its value
+   * Array of arrays that contain an attribute name and its value.
+   *
    * @example
    * // Sets a source
    * createElement('img', {
@@ -24,7 +27,8 @@ export interface NewElementOptions {
    */
   attributes?: [string, string][];
   /**
-   * Content that will be appended to the element using its `innerHTML` property
+   * Content that will be appended to the element using its `innerHTML` property.
+   *
    * @example
    * // Adds a listener for the click event
    * createElement('div', {
@@ -37,10 +41,11 @@ export interface NewElementOptions {
    */
   content?: string;
   /**
-   * Array with event listeners bound to the element.
+   * Array of event listeners to be bound to the element.
    * It is possible to add listeners to the same event type multiple times.
+   *
    * @example
-   * // Adds a listener for the click event
+   * // Adds a listener for the click event.
    * createElement('button', {
    *   // ...
    *   listeners: [
@@ -50,7 +55,8 @@ export interface NewElementOptions {
    */
   listeners?: [keyof HTMLElementEventMap, EventListenerOrEventListenerObject][];
   /**
-   * Parent to which the new element must be appended to
+   * Parent to which the new element must be appended to.
+   *
    * @example
    * createElement('button', {
    *   // ...

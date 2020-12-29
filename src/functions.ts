@@ -1,10 +1,12 @@
 import { NewElementOptions } from './types';
 
 /**
- * Create a new element with custom options and return it
- * @param {keyof HTMLElementTagNameMap} tag Element tag
- * @param {NewElementOptions} [options] Options for the new element, such as id, classes and event listeners
- * @returns {HTMLElement} New HTMLElement
+ * Creates a new element with custom options and returns it.
+ *
+ * @param {keyof HTMLElementTagNameMap} tag Element tag.
+ * @param {NewElementOptions} [options] Options for the new element, such as id, classes and event listeners.
+ *
+ * @returns {HTMLElement} New HTMLElement.
  */
 export const createElement = (
   tagName: keyof HTMLElementTagNameMap,
@@ -24,13 +26,14 @@ export const createElement = (
 };
 
 /**
- * Get DOM elements with the specified attribute and run a callback
+ * Gets DOM elements with the specified attribute and runs a callback
  * function for each one, passing the element and its attribute value as
- * arguments
- * @param {string} attribute Element attribute
+ * arguments.
+ *
+ * @param {string} attribute Element attribute.
  * @param {(element: Element, value: string) => any} callback Callback function
  * that runs for each element with the specified attribute. The element and its
- * attribute value are the arguments for the function
+ * attribute value are the arguments for the function.
  */
 export const handleBindingAttr = (attribute: string, callback: (element: HTMLElement, value: string) => void): void => {
   // Get elements instantly generated
@@ -60,46 +63,53 @@ export const handleBindingAttr = (attribute: string, callback: (element: HTMLEle
 };
 
 /**
- * Receive an object and add its properties to the `window` object
- * @param {object} set Object with properties that will be added to the `window` object
+ * Receives an object and adds its properties to the `window` object.
+ *
+ * @param {object} set Object with properties that will be added to the `window` object.
  */
 export const addGlobalEntries = (set: object): void =>
-  Object.entries(set).forEach((entry) => (window[entry[0]] = entry[1]));
+  Object.entries(set).forEach(([key, value]) => (window[key] = value));
 
 /**
- * Add a new property to the `window` object
- * @param {string} key Property name
- * @param {any} value Property value
+ * Adds a new property to the `window` object.
+ *
+ * @param {string} key Property name.
+ * @param {any} value Property value.
  */
 export const makeGlobal = (key: string, value: any) => (window[key] = value);
 
 /**
- * Return x where `a` is equivalent to `b` and `c` is equivalent to x
+ * Returns x where `a` is equivalent to `b` and `c` is equivalent to x.
  */
 export const ruleOfThree = (a: number, b: number, c: number): number => (b * c) / a;
 
 /* tslint:disable:no-bitwise */
 
 /**
- * Return an index value from the given array
- * @param {T[]} arr Any type of array
- * @returns {T} Random index value from the given array
+ * Returns a random value from the given array.
+ *
+ * @param {T[]} arr Any type of array.
+ *
+ * @returns {T} Random index value from the given array.
  */
 export const getRandomValueFrom = <T>(arr: T[]) => arr[~~(Math.random() * arr.length)];
 
 /* tslint:enable:no-bitwise */
 
 /**
- * Returns a random number between the two given parameters
- * @param {number} min
- * @param {number} max
- * @returns {number} Random number between min and max
+ * Returns a random number between the two given parameters.
+ *
+ * @param {number} min Minimum value.
+ * @param {number} max Maximum value.
+ *
+ * @returns {number} Random number between min and max.
  */
 export const randomNumberBetween = (min: number, max: number) => Math.random() * (max - min) + min;
 
 /**
- * Returns random date between two other dates
- * @returns {string} Random date
+ * Returns a random date between two other dates.
+ *
+ * @returns {string} Random date.
  */
 export const randomDateBetween = (date1: string | number, date2: string | number) => {
   date1 = date1 || '01-01-1970';
@@ -114,8 +124,10 @@ export const randomDateBetween = (date1: string | number, date2: string | number
 };
 
 /**
- * Returns the given string without special chars
- * @param {string} str Initial string
- * @returns {string} The given string without special chars
+ * Returns the given string without special chars.
+ *
+ * @param {string} str Initial string.
+ *
+ * @returns {string} The given string without special chars.
  */
 export const removeSpecialChars = (str: string) => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');

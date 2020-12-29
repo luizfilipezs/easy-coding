@@ -1,28 +1,31 @@
 /**
- * Basic cookie handler for setting and reading cookies
+ * Cookie handler.
  */
 export class Cookies {
   /**
-   * Allows to set a cookie
-   * @param {string} cname Cookie name
-   * @param {string} cvalue Cookie value
-   * @param {string} exdays Cookie duration in days
+   * Sets a cookie.
+   *
+   * @param {string} name Cookie name.
+   * @param {string} value Cookie value.
+   * @param {string} exdays Cookie duration in days.
    */
-  public static set(cookieName: string, value: string, exdays: number) {
+  public static set(name: string, value: string, exdays: number) {
     const d = new Date();
     d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
 
     const expires = 'expires=' + d.toUTCString();
-    document.cookie = `${cookieName}=${value};${expires};path=/`;
+    document.cookie = `${name}=${value};${expires};path=/`;
   }
 
   /**
-   * Returns cookie value
-   * @param {string} cname Cookie name
-   * @returns {string} Value for the given cookie name
+   * Returns the cookie value.
+   *
+   * @param {string} name Cookie name.
+   *
+   * @returns {string} Value for the given cookie name.
    */
-  public static get(cookieName: string) {
-    const name = cookieName + '=';
+  public static get(name: string) {
+    name += '=';
     const ca = document.cookie.split(';');
 
     for (let c of ca) {

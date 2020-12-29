@@ -1,7 +1,8 @@
 import { Type } from './types';
 
 /**
- * Decorator function that add the given class to `globalThis`
- * @param {Type} type Class that will be added to `globalThis`
+ * Decorator function that adds the given class to `globalThis`.
+ *
+ * @param {Type} type Class to be added to `globalThis`.
  */
 export const Global = <T extends Type>(type: T): T => (globalThis[type.name] = type);
