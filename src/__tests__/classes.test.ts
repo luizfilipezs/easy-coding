@@ -1,4 +1,4 @@
-import { Cookies } from '../classes';
+import { Cookies } from '../classes'
 
 describe('test classes', () => {
 
